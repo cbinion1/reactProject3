@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
 class MainContainer extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {};
+  }
   render() {
     return <h1>Howdy Y'all</h1>;
   }
