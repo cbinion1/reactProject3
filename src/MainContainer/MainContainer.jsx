@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Creation from "./Creation.Creation";
-import Login from "./Login/Login";
-import Edit from "./Edit/Edit";
+import Creation from "../Creation/Creation";
+import Login from "../Login/Login";
+import Edit from "../Edit/Edit";
 
 class MainContainer extends Component {
   constructor() {
@@ -37,14 +37,14 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-      const createComment = await fetch("http://localhost:9000/comments", {
+      const createComments = await fetch("http://localhost:9000/comments", {
         method: "POST",
         body: JSON.stringify(comment),
         headers: {
           "Content-type": "application/json"
         }
       });
-      const parsedResponse = await createComment.json();
+      const parsedResponse = await createComments.json();
       this.setState({
         comments: [...this.state.comments, parsedResponse.data]
       });
@@ -131,15 +131,15 @@ class MainContainer extends Component {
   render() {
     return;
     <div>
-      <Comments
+      <comments
         comments={this.state.comments}
         deleteComments={this.deleteComments}
         showModal={this.showModal}
       />
-      <CreateComments addComments={this.addComments} />
+      <createComments addComments={this.addComments} />
 
       {this.state.showEdit ? (
-        <EditComments
+        <editComments
           closeAndEdit={this.closeAndEdit}
           handleFormChange={this.handleFormChange}
           commentToEdit={this.state.commentToEdit}

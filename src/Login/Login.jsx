@@ -9,9 +9,11 @@ class Login extends Component {
       password: ""
     };
   }
+
   handleChange = e => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
+
   handleSubmit = async e => {
     e.preventDefault();
 
@@ -22,6 +24,7 @@ class Login extends Component {
         "Content-Type": "application/json"
       }
     });
+    console.log(loginResponse, " this is login response");
 
     const parsedResponse = await loginResponse.json();
 
