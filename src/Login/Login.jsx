@@ -15,7 +15,7 @@ class Login extends Component {
   handleSubmit = async e => {
     e.preventDefault();
 
-    const loginResponse = await fetch("http://localhost:9000/auth/login", {
+    const loginResponse = await fetch("http://localhost:9000/login", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -26,7 +26,7 @@ class Login extends Component {
     const parsedResponse = await loginResponse.json();
 
     if (parsedResponse.data === "login successful") {
-      this.props.history.push("/movies");
+      this.props.history.push("/login");
     }
   };
   render() {
