@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Creation from "../Creation/Creation";
-import Login from "../Login/Login";
-import Edit from "../Edit/Edit";
+import Creation from "../Creation/Creation.jsx";
+import Comments from "../Comments/Comments.jsx";
+import Edit from "../Edit/Edit.jsx"
+
 
 class MainContainer extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class MainContainer extends Component {
       showEdit: false,
       editCommentId: null,
       commentToEdit: {
-        rating: Number,
+        title: "",
         comment: ""
       }
     };
@@ -20,16 +21,20 @@ class MainContainer extends Component {
   componentDidMount() {
     this.getComments()
       .then(comments => {
-        this.setState({ comments: comments.data });
+        this.setState({
+          comments: comments.data
+        });
+        console.log(comments, "this is comments")
       })
       .catch(err => {
         console.log(err);
       });
+
   }
 
   getComments = async () => {
     const comments = await fetch("http://localhost:9000/comments");
-    const parsedComments = comments.json;
+    const parsedComments = await comments.json();
     return parsedComments;
   };
 
@@ -37,7 +42,7 @@ class MainContainer extends Component {
     e.preventDefault();
 
     try {
-      const createComments = await fetch("http://localhost:9000/comments", {
+      const createComment = await fetch("http://localhost:9000/comments", {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(comment),
@@ -45,13 +50,16 @@ class MainContainer extends Component {
           "Content-type": "application/json"
         }
       });
-      const parsedResponse = await createComments.json();
+      const parsedResponse = await createComment.json();
+      console.log(parsedResponse, " this is the parsed response in add comment")
       this.setState({
         comments: [...this.state.comments, parsedResponse.data]
       });
     } catch (err) {
       console.log(err);
     }
+    console.log(comment, " this is the added comment")
+
   };
 
   showModal = id => {
@@ -70,7 +78,7 @@ class MainContainer extends Component {
 
     try {
       const deleteComments = await fetch(
-        "http://localhost:9000/comments" + id,
+        "http://localhost:9000/comments/" + id,
         {
           method: "DELETE",
           credentials: "include"
@@ -94,7 +102,7 @@ class MainContainer extends Component {
     e.preventDefault();
     try {
       const editComment = await fetch(
-        "http://localhost:9000/comments" + this.state.editCommentId,
+        "http://localhost:9000/comments/" + this.state.editCommentId,
         {
           method: "PUT",
           credentials: "include",
@@ -126,28 +134,17 @@ class MainContainer extends Component {
   handleFormChange = e => {
     this.setState({
       commentToEdit: {
-        ...this.state.commentToEdit,
-        [e.target.name]: e.target.value
+        ...this.state.commentToEdit, [e.target.name]: e.target.value
       }
     });
   };
   render() {
     return (
       <div>
-        <comments
-          comments={this.state.comments}
-          deleteComments={this.deleteComments}
-          showModal={this.showModal}
-        />
-        <createComments addComments={this.addComments} />
+        <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
+        <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
 
-        {this.state.showEdit ? (
-          <editComments
-            closeAndEdit={this.closeAndEdit}
-            handleFormChange={this.handleFormChange}
-            commentToEdit={this.state.commentToEdit}
-          />
-        ) : null}
+        {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
       </div>
     );
   }

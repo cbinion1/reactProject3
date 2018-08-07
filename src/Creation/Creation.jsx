@@ -4,23 +4,26 @@ class Creation extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      title: "",
+      review: ""
+    };
   }
-  createComment = e => {
+  updateComment = (e) => {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
   render() {
     console.log(this.props, " this is props");
     return (
-      <form onSubmit={this.props.addComment.bind(this, this.state)}>
+      <form onSubmit={this.props.addComments.bind(this, this.state)}>
         <label>
-          Comment:
+          Brewery:
           <input type="text" name="title" onChange={this.updateComment} />
         </label>
         <label>
-          Description:
-          <input type="text" name="description" onChange={this.updateComment} />
+          Review:
+          <input type="text" name="review" onChange={this.updateComment} />
         </label>
         <input type="Submit" />
       </form>
