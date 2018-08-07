@@ -39,6 +39,7 @@ class MainContainer extends Component {
     try {
       const createComments = await fetch("http://localhost:9000/comments", {
         method: "POST",
+        credentials: "include",
         body: JSON.stringify(comment),
         headers: {
           "Content-type": "application/json"
@@ -71,7 +72,8 @@ class MainContainer extends Component {
       const deleteComments = await fetch(
         "http://localhost:9000/comments" + id,
         {
-          method: "DELETE"
+          method: "DELETE",
+          credentials: "include"
         }
       );
 
@@ -95,6 +97,7 @@ class MainContainer extends Component {
         "http://localhost:9000/comments" + this.state.editCommentId,
         {
           method: "PUT",
+          credentials: "include",
           body: JSON.stringify(this.state.commentToEdit),
           headers: {
             "Content-Type": "application/json"
@@ -129,23 +132,24 @@ class MainContainer extends Component {
     });
   };
   render() {
-    return;
-    <div>
-      <comments
-        comments={this.state.comments}
-        deleteComments={this.deleteComments}
-        showModal={this.showModal}
-      />
-      <createComments addComments={this.addComments} />
-
-      {this.state.showEdit ? (
-        <editComments
-          closeAndEdit={this.closeAndEdit}
-          handleFormChange={this.handleFormChange}
-          commentToEdit={this.state.commentToEdit}
+    return (
+      <div>
+        <comments
+          comments={this.state.comments}
+          deleteComments={this.deleteComments}
+          showModal={this.showModal}
         />
-      ) : null}
-    </div>;
+        <createComments addComments={this.addComments} />
+
+        {this.state.showEdit ? (
+          <editComments
+            closeAndEdit={this.closeAndEdit}
+            handleFormChange={this.handleFormChange}
+            commentToEdit={this.state.commentToEdit}
+          />
+        ) : null}
+      </div>
+    );
   }
 }
 

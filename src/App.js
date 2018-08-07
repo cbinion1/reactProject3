@@ -5,7 +5,11 @@ import Login from "./Login/Login.jsx";
 import { Route, Switch } from "react-router-dom";
 
 const My404 = () => {
-  return <div>You done messed up A-A-Ron!!</div>;
+  return (
+    <div>
+      <h1>You done messed up A-A-Ron!!</h1>
+    </div>
+  );
 };
 
 class App extends Component {

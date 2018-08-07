@@ -19,6 +19,7 @@ class Login extends Component {
 
     const loginResponse = await fetch("http://localhost:9000/auth/login", {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify(this.state),
       headers: {
         "Content-Type": "application/json"
@@ -27,11 +28,12 @@ class Login extends Component {
     console.log(loginResponse, " this is login response");
 
     const parsedResponse = await loginResponse.json();
-
-    if (parsedResponse.data === "login successful") {
-      this.props.history.push("/login");
+    console.log(parsedResponse);
+    if (parsedResponse.data === "login Succesful") {
+      this.props.history.push("/comments");
     }
   };
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
