@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Creation from "../Creation/Creation.jsx";
 import Comments from "../Comments/Comments.jsx";
-import Edit from "../Edit/Edit.jsx"
-
+import Edit from "../Edit/Edit.jsx";
+import NavBar from "../NavBar/NavBar.jsx";
 
 class MainContainer extends Component {
   constructor() {
@@ -141,9 +141,9 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
         <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
-
         {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
       </div>
     );

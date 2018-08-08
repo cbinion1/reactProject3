@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from 'reactstrap';
 
 class Creation extends Component {
   constructor() {
@@ -25,7 +26,7 @@ class Creation extends Component {
           Review:
           <input type="text" name="review" onChange={this.updateComment} />
         </label>
-        <input type="Submit" />
+        <Button color="warning" type="Submit">Submit Yo Shit</Button>
       </form>
     );
   }

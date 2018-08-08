@@ -19,7 +19,6 @@ class App extends Component {
         <Switch>
           <Route exact path="/auth" component={Login} />
           <Route exact path="/comments" component={MainContainer} />
-
           <Route component={My404} />
         </Switch>
       </div>
