@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Button } from "reactstrap";
+import "./style.css"
 
 class Login extends Component {
   constructor() {
@@ -36,17 +38,20 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Username:
-          <input type="text" name="username" onChange={this.handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" onChange={this.handleChange} />
-        </label>
-        <input type="Submit" />
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Username:
+            <input type="text" name="username" onChange={this.handleChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password" onChange={this.handleChange} />
+          </label>
+          <input type="Submit" />
+          <a href="/auth/google">Sign In with Google</a>
+        </form>
+      </div>
     );
   }
 }

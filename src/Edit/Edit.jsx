@@ -1,19 +1,21 @@
 import React from "react";
+import { Button } from "reactstrap";
+import "./style.css";
 
 const Edit = props => {
   return (
-    <div>
-      <h4> Edit Beer Comment</h4>
+    <div className="edit-style">
+      <h4> Edit Game Review</h4>
       <form onSubmit={props.closeAndEdit}>
         <label>
-          Edit Brewery:
+          Game Title:
           <input type="text" name="title" onChange={props.handleFormChange} value={props.commentToEdit.title} />
         </label>
         <label>
           Edit Review:
-          <input type="text" name="review" onChange={props.handleFormChange} value={props.commentToEdit.review} />
+          <input type="textarea" name="review" onChange={props.handleFormChange} value={props.commentToEdit.review} />
         </label>
-        <input type="Submit" />
+        <Button color="warning" type="submit">Edit Review</Button>
       </form>
     </div>
   );

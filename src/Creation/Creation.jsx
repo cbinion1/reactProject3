@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from 'reactstrap';
+import "./style.css";
 
 class Creation extends Component {
   constructor() {
@@ -17,9 +18,9 @@ class Creation extends Component {
   render() {
     console.log(this.props, " this is props");
     return (
-      <form onSubmit={this.props.addComments.bind(this, this.state)}>
+      <form className="creation-style" onSubmit={this.props.addComments.bind(this, this.state)}>
         <label>
-          Brewery:
+          Game Title:
           <input type="text" name="title" onChange={this.updateComment} />
         </label>
         <label>

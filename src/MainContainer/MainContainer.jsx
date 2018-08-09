@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Creation from "../Creation/Creation.jsx";
 import Comments from "../Comments/Comments.jsx";
-import Edit from "../Edit/Edit.jsx";
-import NavBar from "../NavBar/NavBar.jsx";
+import Edit from "../Edit/Edit.jsx"
+import Games from "../Games/Games.jsx"
+
 
 class MainContainer extends Component {
   constructor() {
     super();
     this.state = {
       comments: [],
+      games: [],
       showEdit: false,
       editCommentId: null,
       commentToEdit: {
@@ -18,7 +20,7 @@ class MainContainer extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getComments()
       .then(comments => {
         this.setState({
@@ -29,11 +31,36 @@ class MainContainer extends Component {
       .catch(err => {
         console.log(err);
       });
+    this.getGames().then((games) => {
+      this.setState({ games: games })
+    }).catch(err => {
+      console.log(err);
+    })
 
   }
-
+  getGames = async () => {
+    try {
+      const games = await fetch("http://localhost:9000/getgamesapi", {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      const gamesJson = await games.json();
+      console.log(JSON.parse(gamesJson.data), "this is games");
+      const parsedData = JSON.parse(gamesJson.data);
+      return parsedData.results
+    } catch (err) {
+      console.log(err)
+    }
+  }
   getComments = async () => {
-    const comments = await fetch("http://localhost:9000/comments");
+    const comments = await fetch("http://localhost:9000/comments", {
+      credentials: "include",
+      headers: {
+        // "Access-Allow-Control-Origin": "http://localhost:3000",
+        "Content-type": "application/json"
+      }
+    });
     const parsedComments = await comments.json();
     return parsedComments;
   };
@@ -141,9 +168,9 @@ class MainContainer extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
         <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
+        <Games games={this.state.games} handleFormChange={this.handleFormChange} />
         {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
       </div>
     );
