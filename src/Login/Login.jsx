@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import "./style.css"
+import NavBar from "../NavBar/NavBar";
 
 class Login extends Component {
   constructor() {
@@ -38,17 +39,18 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-style">
+        <NavBar />
         <form onSubmit={this.handleSubmit}>
           <label>
             Username:
             <input type="text" name="username" onChange={this.handleChange} />
-          </label>
+          </label><br />
           <label>
             Password:
             <input type="password" name="password" onChange={this.handleChange} />
-          </label>
-          <input type="Submit" />
+          </label><br />
+          <Button color="warning" type="Submit">Login</Button><br />
           <a href="/auth/google">Sign In with Google</a>
         </form>
       </div>

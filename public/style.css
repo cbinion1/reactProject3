@@ -10,5 +10,6 @@ h1{
 }
 body {
     height: 100%;
-    background-color: #94AF52;
+    background-color: #94AF52 !important;
+    margin: 0;
 }

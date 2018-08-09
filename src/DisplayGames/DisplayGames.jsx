@@ -1,4 +1,5 @@
 import React from 'react';
+import "./style.css";
 
 const DisplayGames = (props) => {
     const gamesList = props.displayGames.map((game, i) => {
@@ -7,7 +8,7 @@ const DisplayGames = (props) => {
         )
     })
     return (
-        <div>
+        <div className="game-display-style">
             <h1>Search Results</h1>
             <ul>
                 {gamesList}

@@ -8,7 +8,7 @@ const Comments = (props) => {
     return (
       <li key={comment._id} >
         <h3>{comment.title}</h3>
-        <p>{comment.review}</p>
+        <p>{comment.comment}</p>
         <br />
         <Button color="secondary" onClick={props.deleteComments.bind(null, comment._id)}>Delete</Button>
         <Button color="success" onClick={props.showModal.bind(null, comment._id)}>Edit</Button>

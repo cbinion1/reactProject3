@@ -8,7 +8,7 @@ class Creation extends Component {
 
     this.state = {
       title: "",
-      review: ""
+      comment: ""
     };
   }
   updateComment = (e) => {
@@ -16,7 +16,6 @@ class Creation extends Component {
   };
 
   render() {
-    console.log(this.props, " this is props");
     return (
       <form className="creation-style" onSubmit={this.props.addComments.bind(this, this.state)}>
         <label>
@@ -25,7 +24,7 @@ class Creation extends Component {
         </label>
         <label>
           Review:
-          <input type="text" name="review" onChange={this.updateComment} />
+          <input type="text" name="comment" onChange={this.updateComment} />
         </label>
         <Button color="warning" type="Submit">Submit Yo Shit</Button>
       </form>

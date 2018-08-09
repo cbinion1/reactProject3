@@ -3,6 +3,7 @@ import Creation from "../Creation/Creation.jsx";
 import Comments from "../Comments/Comments.jsx";
 import Edit from "../Edit/Edit.jsx"
 import Games from "../Games/Games.jsx"
+import NavBar from "../NavBar/NavBar.jsx"
 
 
 class MainContainer extends Component {
@@ -144,7 +145,7 @@ class MainContainer extends Component {
       const editedCommentArray = this.state.comments.map(comment => {
         if (comment._id === this.state.editCommentId) {
           comment.title = parsedResponse.data.title;
-          comment.description = parsedResponse.data.description;
+          comment.comment = parsedResponse.data.comment;
         }
 
         return comment;
@@ -167,11 +168,12 @@ class MainContainer extends Component {
   };
   render() {
     return (
-      <div>
-        <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
-        <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
+      <div className="main-container-style">
+        <NavBar />
         <Games games={this.state.games} handleFormChange={this.handleFormChange} />
         {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
+        <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
+        <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
       </div>
     );
   }

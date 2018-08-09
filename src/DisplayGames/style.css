@@ -1,5 +1,12 @@
-.creation-style {
+.game-display-style {
     font-family: 'Do Hyeon', sans-serif;
     background-color: #94AF52;
     margin: 0;
 }
+
+li {
+    list-style-type: none;
+}
+
+
+

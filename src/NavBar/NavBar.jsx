@@ -35,9 +35,6 @@ class NavBar extends Component {
                             <NavItem>
                                 <NavLink href="/comments/">Search for Games!</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="/comments">Leave a Review!</NavLink>
-                            </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>

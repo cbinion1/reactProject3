@@ -12,8 +12,8 @@ const Edit = props => {
           <input type="text" name="title" onChange={props.handleFormChange} value={props.commentToEdit.title} />
         </label>
         <label>
-          Edit Review:
-          <input type="textarea" name="review" onChange={props.handleFormChange} value={props.commentToEdit.review} />
+          Edit Comment:
+          <input type="text" name="comment" onChange={props.handleFormChange} value={props.commentToEdit.review} />
         </label>
         <Button color="warning" type="submit">Edit Review</Button>
       </form>
