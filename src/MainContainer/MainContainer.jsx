@@ -6,6 +6,7 @@ import Games from "../Games/Games.jsx"
 import NavBar from "../NavBar/NavBar.jsx"
 
 
+
 class MainContainer extends Component {
   constructor() {
     super();
@@ -170,10 +171,10 @@ class MainContainer extends Component {
     return (
       <div className="main-container-style">
         <NavBar />
-        <Games games={this.state.games} handleFormChange={this.handleFormChange} />
-        {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
-        <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
         <Comments deleteComments={this.deleteComments} showModal={this.showModal} comments={this.state.comments} />
+        <Creation addComments={this.addComments} handleFormChange={this.handleFormChange} />
+        {this.state.showEdit ? (<Edit closeAndEdit={this.closeAndEdit} handleFormChange={this.handleFormChange} commentToEdit={this.state.commentToEdit} />) : null}
+        <Games games={this.state.games} handleFormChange={this.handleFormChange} />
       </div>
     );
   }

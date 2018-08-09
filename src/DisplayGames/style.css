@@ -1,11 +1,13 @@
 .game-display-style {
     font-family: 'Do Hyeon', sans-serif;
-    background-color: #94AF52;
+    /* background-color: #94AF52; */
+    color: white;
     margin: 0;
 }
 
 li {
     list-style-type: none;
+    color: white;
 }
 
 
